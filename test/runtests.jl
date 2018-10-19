@@ -491,4 +491,13 @@ println("#### States ####")
     @test state[1, :φ] ≈ φ_Sl
     @test state[2, :φ] ≈ φ_Sw1
     @test state[3, :φ] ≈ φ_Sw2
+    println("## binary operations ##")
+    s1 = State(grid, ones(SystemSize(grid)))
+    s2 = State(grid, ones(SystemSize(grid)))
+    @test (PowerDynBase.BaseState(s1 + s2).vec .== 2) |> all
+    @test (PowerDynBase.BaseState(s1 - s2).vec .== 0) |> all
+    @test (PowerDynBase.BaseState(-s1).vec .== -1) |> all
+    @test (PowerDynBase.BaseState(2*s1).vec .== 2) |> all
+    @test (PowerDynBase.BaseState(s1*2).vec .== 2) |> all
+    @test (PowerDynBase.BaseState(s1/2).vec .≈ 0.5) |> all
 end
