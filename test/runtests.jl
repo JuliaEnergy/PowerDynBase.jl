@@ -494,6 +494,8 @@ println("#### States ####")
     println("## binary operations ##")
     s1 = State(grid, ones(SystemSize(grid)))
     s2 = State(grid, ones(SystemSize(grid)))
+    @test s1 == s1
+    @test s1 ≈ s2
     @test (PowerDynBase.BaseState(s1 + s2).vec .== 2) |> all
     @test (PowerDynBase.BaseState(s1 - s2).vec .== 0) |> all
     @test (PowerDynBase.BaseState(-s1).vec .== -1) |> all

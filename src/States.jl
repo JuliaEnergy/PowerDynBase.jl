@@ -188,3 +188,11 @@ Base.:-(s::AbstractState) = State(GridDynamics(s), .- BaseState(s).vec)
 Base.:*(k, s::AbstractState) = State(GridDynamics(s), k.*BaseState(s).vec)
 Base.:*(s::AbstractState, k) = k*s # commutivity
 Base.:/(s::AbstractState, k) = (1/k)*s
+function Base.:(==)(s1::AbstractState, s2::AbstractState)
+    @assert GridDynamics(s1) == GridDynamics(s2)
+    all(BaseState(s1).vec .== BaseState(s2).vec)
+end
+function Base.:≈(s1::AbstractState, s2::AbstractState)
+    @assert GridDynamics(s1) == GridDynamics(s2)
+    all(BaseState(s1).vec .≈ BaseState(s2).vec)
+end
