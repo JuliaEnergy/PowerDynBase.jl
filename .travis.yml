@@ -34,9 +34,9 @@ before_script: # homebrew for mac
   - julia -e 'using Pkg; Pkg.add(PackageSpec(name="Documenter", version="0.19"))'
 
 ## uncomment the following lines to override the default test script
-script:
- - julia --optimize=0 --check-bounds=yes --color=yes --code-coverage=user --inline=no -e "using Pkg; Pkg.test(coverage=true)"
- # - julia docs/make.jl
+# script:
+#  - julia --optimize=0 --check-bounds=yes --color=yes --code-coverage=user --inline=no -e "using Pkg; Pkg.test(coverage=true)"
+#  - julia docs/make.jl
 after_success:
   # push coverage results to Codecov
   - julia -e 'using Pkg; Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder())'
