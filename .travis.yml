@@ -36,7 +36,7 @@ before_script: # homebrew for mac
 ## uncomment the following lines to override the default test script
 script:
  - julia --check-bounds=yes --color=yes --code-coverage=all --inline=no -e "using Pkg; Pkg.test(coverage=true)"
- - julia docs/make.jl
+ # - julia docs/make.jl
 after_success:
   # push coverage results to Codecov
   - julia -e 'using Pkg; Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder())'
