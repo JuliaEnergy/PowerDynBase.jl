@@ -10,7 +10,7 @@ issymbol(::Any) = false
 """
     abstract type AbstractDEVariable end
 
-Abstract super type for all variables that [PowerDynBase.AbstractNetworkFunction`](@ref) sub-types can be called with.
+Abstract super type for all variables that [`PowerDynBase.AbstractNetworkFunction`](@ref) sub-types can be called with.
 
 DEVariable stands for Differential Equation Variable.
 
