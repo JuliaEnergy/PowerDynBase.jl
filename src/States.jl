@@ -95,7 +95,7 @@ The internal variables can be also directly accessed with symbols, i.e.
 
 returns the frequency ``ω`` at node ``j``.
 To find out the proper symbol, the easiest way is to look into the docs
-of the corresponding [`AbstractNodeDynamics`](@ref) subtype or simply at the
+of the corresponding [`AbstractNodeParameters`](@ref) subtype or simply at the
 output of `print`:
 
     julia> println(SwingEq(H=2, P=3, D=4, Ω=5))
