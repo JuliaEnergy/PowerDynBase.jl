@@ -37,7 +37,7 @@ Using `FourthEq` for node ``a`` applies the equations
 The fourth-order equations read (according to Sauer, p. 140, eqs. (6110)-(6114)) and p. 35 eqs(3.90)-(3.91)
 ```math
     \frac{d\theta}{dt} = \omega \\
-     \frac{d\omega}{dt} = P-D\omega - p -(x'_q-x'_d)i_d i_q\\
+     \frac{d\omega}{dt} = P-D\omega - p - (x'_q-x'_d)i_d i_q\\
     \frac{d e_q}{dt} = \frac{1}{T'_d} (- e_q - (x_d - x'_d) i_{d}+ e_f) \\
     \frac{d e_d}{dt} = \frac{1}{T'_q} (- e_d + (x_q - x'_q) i_{q})  \\
 ```
@@ -74,5 +74,7 @@ end [[θ,dθ],[ω, dω]] begin
     du = -1im*de_c*exp(1im*θ)+ u*1im*ω
     dω = (P - D*ω - p- (X_q_dash - X_d_dash)*i_d* i_q)*Ω_H
 end
+
+getStaticParameters(n::FourthEq) = error("FourthEq should be a PV bus, but I am not sure whether that is actually true due to the 'i_d i_q' term in `dω`. This needs to be checked and implemented.")
 
 export FourthEq

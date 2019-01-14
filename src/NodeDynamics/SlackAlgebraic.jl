@@ -25,4 +25,6 @@ end [] begin
         du = u - U
 end
 
+getStaticParameters(n::SlackAlgebraic) = AbstractStaticSlack(V=abs(n.U),φ=angle(n.U))
+
 export SlackAlgebraic

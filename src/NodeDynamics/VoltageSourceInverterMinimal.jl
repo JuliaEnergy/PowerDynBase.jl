@@ -45,4 +45,6 @@ end [[ω, dω]] begin
     dω = 1/τ_P*(-ω-K_P*(p-P))
 end
 
+getStaticParameters(n::VSIMinimal) = error("VSIMinimal should be a PV or PQ bus, but I am not sure which one and why. This needs to be checked and implemented.")
+
 export VSIMinimal

@@ -23,4 +23,6 @@ end [] begin
     du = S - s
 end
 
+getStaticParameters(n::PQAlgebraic) = AbstractStaticPQ(P=real(n.S), Q=imag(n.S))
+
 export PQAlgebraic

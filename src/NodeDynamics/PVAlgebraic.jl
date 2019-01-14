@@ -26,4 +26,6 @@ end [] begin
     du = (v-V) + im*(p-P)
 end
 
+getStaticParameters(n::PVAlgebraic) = AbstractStaticPV(P=n.P, V=n.V)
+
 export PVAlgebraic

@@ -43,6 +43,8 @@ end [[ω, dω]] begin
     dω = (P - D*ω - p)*Ω_H
 end
 
+getStaticParameters(n::SwingEq) = AbstractStaticPV(P=n.P, V=1)
+
 export SwingEq
 
 @doc doc"""
@@ -95,5 +97,7 @@ end [[ω, dω]] begin
 end
 convert(::Type{SwingEq}, p::SwingEqLVS) =
     SwingEq(H=p.H, P=p.P, D=p.D, Ω=p.Ω)
+
+getStaticParameters(n::SwingEqLVS) = AbstractStaticPV(P=n.P, V=n.V)
 
 export SwingEqLVS
