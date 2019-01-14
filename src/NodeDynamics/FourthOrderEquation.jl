@@ -75,6 +75,4 @@ end [[θ,dθ],[ω, dω]] begin
     dω = (P - D*ω - p- (X_q_dash - X_d_dash)*i_d* i_q)*Ω_H
 end
 
-getStaticParameters(n::FourthEq) = error("FourthEq should be a PV bus, but I am not sure whether that is actually true due to the 'i_d i_q' term in `dω`. This needs to be checked and implemented.")
-
 export FourthEq

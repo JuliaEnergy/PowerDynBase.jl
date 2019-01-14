@@ -25,6 +25,8 @@ end [] begin
         du = u - U
 end
 
-getStaticParameters(n::SlackAlgebraic) = AbstractStaticSlack(V=abs(n.U),φ=angle(n.U))
+getStaticApproximation(n::SlackAlgebraic) = StaticSlack(V=abs(n.U),φ=angle(n.U))
+
+getInternalSteadyStateApproximation(::SlackAlgebraic, u, i) = InternalSteadyState{SlackAlgebraic}()
 
 export SlackAlgebraic

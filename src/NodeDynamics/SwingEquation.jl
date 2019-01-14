@@ -43,7 +43,9 @@ end [[ω, dω]] begin
     dω = (P - D*ω - p)*Ω_H
 end
 
-getStaticParameters(n::SwingEq) = AbstractStaticPV(P=n.P, V=1)
+getStaticApproximation(n::SwingEq) = AbstractStaticPV(P=n.P, V=1)
+
+getInternalSteadyStateApproximation(::SwingEq) = InternalSteadyState{SwingEq}(ω => 0)
 
 export SwingEq
 
@@ -98,6 +100,8 @@ end
 convert(::Type{SwingEq}, p::SwingEqLVS) =
     SwingEq(H=p.H, P=p.P, D=p.D, Ω=p.Ω)
 
-getStaticParameters(n::SwingEqLVS) = AbstractStaticPV(P=n.P, V=n.V)
+getStaticApproximation(n::SwingEqLVS) = StaticPV(P=n.P, V=n.V)
+
+getInernalSteadyStateApproximation(::SwingEqLVS, u, i) = InternalSteadyState{SwingEqLVS}(ω => 0)
 
 export SwingEqLVS

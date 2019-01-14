@@ -23,6 +23,8 @@ end [] begin
     du = S - s
 end
 
-getStaticParameters(n::PQAlgebraic) = AbstractStaticPQ(P=real(n.S), Q=imag(n.S))
+getStaticApproximation(n::PQAlgebraic) = StaticPQ(P=real(n.S), Q=imag(n.S))
+
+getInternalSteadyStateApproximation(::PQAlgebraic, u, i) = InternalSteadyState{PQAlgebraic}()
 
 export PQAlgebraic

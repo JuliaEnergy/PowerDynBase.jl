@@ -26,6 +26,8 @@ end [] begin
     du = (v-V) + im*(p-P)
 end
 
-getStaticParameters(n::PVAlgebraic) = AbstractStaticPV(P=n.P, V=n.V)
+getStaticApproximation(n::PVAlgebraic) = StaticPV(P=n.P, V=n.V)
+
+getInternalSteadyStateApproximation(::PVAlgebraic, u, i) = InternalSteadyState{PVAlgebraic}()
 
 export PVAlgebraic

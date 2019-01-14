@@ -48,6 +48,6 @@ end [[ω, dω],[q_m,dq_m]] begin
     dω = 1/τ_P*(-ω-K_P*(p-P))
 end
 
-getStaticParameters(n::VSIMinimal) = error("VSIMinimal should be a PV or PQ bus, but I am not sure which one and why. This needs to be checked and implemented.")
+getInternalSteadyStateApproximation(::VSIVoltagePT1, u, i) = InternalSteadyState{VSIMinimal}(ω => 0, q_m => imag(u * conj(i)))
 
 export VSIVoltagePT1

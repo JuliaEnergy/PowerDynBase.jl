@@ -49,6 +49,7 @@ include("DEVariables.jl")
 # base definitions for all node dynamics
 include("NodeParametersBase.jl")
 include("NodeDynamicsBase.jl")
+include("StaticApproximationsBase.jl")
 
 # all possible node dynamics
 include("DynamicNodeMacro.jl")

@@ -20,6 +20,8 @@ dint = []; int = []
 @test pq_dyn.ode_dynamics.rhs(dint, u, i, int, t) == S - s
 @test internalsymbolsof(pq_dyn) == []
 @test internaldsymbolsof(pq_dyn) == []
+@test PowerDynBase.getStaticApproximation(pq_par) ≈ PowerDynBase.StaticPQ(P = real(S), Q=imag(S))
+@test PowerDynBase.getInernalSteadyStateApproximation(pq_par) ≈ InternalState{PQAlgebraic}()
 
 @syms du
 ints = PowerDynBase.ODEVariable(val = int)

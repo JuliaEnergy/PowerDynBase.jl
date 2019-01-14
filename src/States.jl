@@ -3,6 +3,8 @@
 
 import Base: convert
 
+using StaticArrays
+
 # G = grid type
 # V = Value Type of entries (e.g. Float64)
 # T = type of the time entry
@@ -205,3 +207,34 @@ function Base.:≈(s1::AbstractState, s2::AbstractState)
     @assert GridDynamics(s1) == GridDynamics(s2)
     all(BaseState(s1).vec .≈ BaseState(s2).vec)
 end
+
+
+function getSymbolIndex(N::AbstractNodeParameters, sym::Symbol)
+    symbolindex = findfirst(sym .== internalsymbolsof(N))
+    if symbolindex === nothing
+        throw(StateError("Cannot find symbol $(QuoteNode(sym)) for node $N in the state."))
+    end
+    symbolindex
+end
+
+abstract type AbstractInternalState{N <: AbstractNodeParameters} end
+
+struct InternalState{N} <: AbstractInternalState{N}
+    vals::AbstractVector
+    function InternalState{N}(vals) where N
+        @assert length(vals) == length(internalsymbolsof(N))
+        new{N}(vals)
+    end
+end
+function Base.:(==)(s1::AbstractInternalState{N}, s2::AbstractInternalState{N}) where N
+    all(s1.vals == s2.vals)
+end
+function Base.:≈(s1::AbstractInternalState{N}, s2::AbstractInternalState{N}) where N
+    all(s1.vals ≈ s2.vals)
+end
+
+
+getindex(n::AbstractInternalState, sym::Symbol) = n[getSymbolIndex(sym)]
+setindex(n::AbstractInternalState, v, sym::Symbol) = (n[getSymbolIndex(sym)] = v)
+@inline getindex(n::AbstractInternalState, index) = n.vals[index]
+@inline setindex(n::AbstractInternalState, v, index) = (n.vals[index] = v)
