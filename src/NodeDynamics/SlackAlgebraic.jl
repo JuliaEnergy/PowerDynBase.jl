@@ -27,6 +27,6 @@ end
 
 getStaticApproximation(n::SlackAlgebraic) = StaticSlack(V=abs(n.U),φ=angle(n.U))
 
-getInternalSteadyStateApproximation(::SlackAlgebraic, u, i) = InternalSteadyState{SlackAlgebraic}()
+getInternalSteadyStateApproximation(::SlackAlgebraic, u, i) = InternalState{SlackAlgebraic}()
 
 export SlackAlgebraic

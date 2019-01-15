@@ -226,6 +226,12 @@ struct InternalState{N} <: AbstractInternalState{N}
         new{N}(vals)
     end
 end
+function InternalState{N}(;kwargs...) where N
+    symbols = internalsymbolsof(N)
+    values = zeros(length(symbols))
+end
+
+
 function Base.:(==)(s1::AbstractInternalState{N}, s2::AbstractInternalState{N}) where N
     all(s1.vals == s2.vals)
 end

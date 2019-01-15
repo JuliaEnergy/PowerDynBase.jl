@@ -45,6 +45,6 @@ end [[ω, dω]] begin
     dω = 1/τ_P*(-ω-K_P*(p-P))
 end
 
-getInternalSteadyStateApproximation(::VSIMinimal, u, i) = InternalSteadyState{VSIMinimal}(ω => 0)
+getInternalSteadyStateApproximation(::VSIMinimal, u, i) = InternalState{VSIMinimal}(ω => 0)
 
 export VSIMinimal

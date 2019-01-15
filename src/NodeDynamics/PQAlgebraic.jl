@@ -25,6 +25,6 @@ end
 
 getStaticApproximation(n::PQAlgebraic) = StaticPQ(P=real(n.S), Q=imag(n.S))
 
-getInternalSteadyStateApproximation(::PQAlgebraic, u, i) = InternalSteadyState{PQAlgebraic}()
+getInternalSteadyStateApproximation(::PQAlgebraic, u, i) = InternalState{PQAlgebraic}()
 
 export PQAlgebraic

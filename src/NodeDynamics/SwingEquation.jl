@@ -45,7 +45,7 @@ end
 
 getStaticApproximation(n::SwingEq) = AbstractStaticPV(P=n.P, V=1)
 
-getInternalSteadyStateApproximation(::SwingEq) = InternalSteadyState{SwingEq}(ω => 0)
+getInternalSteadyStateApproximation(::SwingEq) = InternalState{SwingEq}(ω => 0)
 
 export SwingEq
 
@@ -102,6 +102,6 @@ convert(::Type{SwingEq}, p::SwingEqLVS) =
 
 getStaticApproximation(n::SwingEqLVS) = StaticPV(P=n.P, V=n.V)
 
-getInernalSteadyStateApproximation(::SwingEqLVS, u, i) = InternalSteadyState{SwingEqLVS}(ω => 0)
+getInternalSteadyStateApproximation(::SwingEqLVS, u, i) = InternalState{SwingEqLVS}(ω => 0)
 
 export SwingEqLVS

@@ -21,7 +21,7 @@ dint = []; int = []
 @test internalsymbolsof(pq_dyn) == []
 @test internaldsymbolsof(pq_dyn) == []
 @test PowerDynBase.getStaticApproximation(pq_par) ≈ PowerDynBase.StaticPQ(P = real(S), Q=imag(S))
-@test PowerDynBase.getInernalSteadyStateApproximation(pq_par) ≈ InternalState{PQAlgebraic}()
+@test PowerDynBase.getInternalSteadyStateApproximation(pq_par, nothing, nothing) ≈ PowerDynBase.InternalState{PQAlgebraic}()
 
 @syms du
 ints = PowerDynBase.ODEVariable(val = int)

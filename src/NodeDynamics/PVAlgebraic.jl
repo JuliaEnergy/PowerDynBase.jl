@@ -28,6 +28,6 @@ end
 
 getStaticApproximation(n::PVAlgebraic) = StaticPV(P=n.P, V=n.V)
 
-getInternalSteadyStateApproximation(::PVAlgebraic, u, i) = InternalSteadyState{PVAlgebraic}()
+getInternalSteadyStateApproximation(::PVAlgebraic, u, i) = InternalState{PVAlgebraic}()
 
 export PVAlgebraic

@@ -1,9 +1,5 @@
 
 using Test
-using Random
-random_seed = 1234
-@show random_seed
-Random.seed!(random_seed)
 
 testlist = [
     ("nodedynamics.jl", "Single Node Tests"),
