@@ -26,8 +26,8 @@ env:
 # after_success: echo "$AFTER" && $AFTER
 script:
  # - julia -e 'Pkg.clone(pwd()); Pkg.build("DPSABase"); Pkg.test("DPSABase"; coverage=true)'
- - julia --check-bounds=yes --color=yes -e "using Pkg; Pkg.test(coverage=true)"
- - julia docs/make.jl
+  - echo "Julia $TRAVIS_JULIA_VERSION"
+  - echo "Again Julia $TRAVIS_JULIA_VERSION"
 # script:
 #   - "echo "Julia $TRAVIS_JULIA_VERSION"
 #   - "echo "Again Julia $TRAVIS_JULIA_VERSION"
