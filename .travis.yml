@@ -25,9 +25,9 @@ env:
 # script: echo "$SCRIPT" && $SCRIPT
 # after_success: echo "$AFTER" && $AFTER
 
-# script:
-#     - "echo "Julia $TRAVIS_JULIA_VERSION"
-#     - "echo "Again Julia $TRAVIS_JULIA_VERSION"
+script:
+  - "echo "Julia $TRAVIS_JULIA_VERSION"
+  - "echo "Again Julia $TRAVIS_JULIA_VERSION"
 
 # jobs:
 #   include:
