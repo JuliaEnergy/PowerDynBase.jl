@@ -12,7 +12,10 @@ git:
   depth: 99999999
 env:
   global:
+    - JULIA_COVERAGE_VERSION=1.0
     - PYTHON=conda
+    - RED='\033[0;31m'
+    - NOCOLOR='\033[0m'
 #   matrix:
 #     - NAME="Unit/Integration Tests"
 #       SCRIPT="echo \"test script\""
@@ -22,31 +25,33 @@ env:
 #       SCRIPT=echo 'doc script'
 #
 # before_script: echo "$BEFORE" && $BEFORE
+before_script:
+  - alias echo='echo -e'
 # script: echo "$SCRIPT" && $SCRIPT
 # after_success: echo "$AFTER" && $AFTER
 script:
- # - julia -e 'Pkg.clone(pwd()); Pkg.build("DPSABase"); Pkg.test("DPSABase"; coverage=true)'
-  - echo "Julia $TRAVIS_JULIA_VERSION" && $(exit 1)
-  - echo "Again Julia $TRAVIS_JULIA_VERSION" &&
-    echo "Again 2 Julia $TRAVIS_JULIA_VERSION"
+  - if [ $JULIA_COVERAGE_VERSION == $TRAVIS_JULIA_VERSION ]; then PUSH_COVERAGE=true; else PUSH_COVERAGE=false; fi && echo "PUSH_COVERAGE=$PUSH_COVERAGE"
+  - julia --check-bounds=yes --color=yes --inline=no -e "using Pkg; Pkg.test(coverage=true)" &&
+    julia -e 'using Pkg; Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder())'
+  - julia -e 'using Pkg; Pkg.add(PackageSpec(name="Documenter", version="0.19"))' &&
+    julia docs/make.jl
 # script:
 #   - "echo "Julia $TRAVIS_JULIA_VERSION"
 #   - "echo "Again Julia $TRAVIS_JULIA_VERSION"
 
 jobs:
   include:
-    - stage: "Changelog Check"
-      name: "Changelog Check"
+    - name: "Changelog Check"
       if: type IN (pull_request)
       language: minimal
       before_install:
       before_script:
       script:
-        - git fetch origin master:master
+        - git fetch origin master:master &&
         # show all changed files for debugging
-        - git diff HEAD master --name-only
+          git diff HEAD master --name-only &&
         # check if CHANGELOG.md has been modified
-        - git diff HEAD master --name-only | grep ^CHANGELOG.md$ || (ret=$? && echo "You didn't provide the details of your change in CHANGELOG.md" && exit $ret)
+          git diff HEAD master --name-only | grep ^CHANGELOG.md$ || (ret=$? && echo "${RED}You didn't provide the details of your change in CHANGELOG.md" && exit $ret)
 
 # before_install:
 #   - julia -e "using InteractiveUtils; versioninfo();"
