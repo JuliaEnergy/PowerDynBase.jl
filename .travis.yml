@@ -24,8 +24,7 @@ before_script:
 # uncomment the following lines to override the default test script
 jobs:
   include:
-    - stage: "Unit/Integration Tests"
-      script:
+    - script:
         - julia --check-bounds=yes --color=yes --inline=no -e "using Pkg; Pkg.test(coverage=true)"
       after_success:
         # push coverage results to Codecov
