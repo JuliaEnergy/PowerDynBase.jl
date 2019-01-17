@@ -26,14 +26,14 @@ env:
 #       SCRIPT=echo 'doc script'
 #
 # before_script: echo "$BEFORE" && $BEFORE
-before_script:
-  - alias echo='echo -e'
+# before_script:
+#   - alias echo='echo -e'
 
 # script: echo "$SCRIPT" && $SCRIPT
 # after_success: echo "$AFTER" && $AFTER
 script:
   - if [ $JULIA_COVERAGE_VERSION == $TRAVIS_JULIA_VERSION ]; then PUSH_COVERAGE=true; else PUSH_COVERAGE=false; fi
-    && echo "${RED}PUSH_COVERAGE=$PUSH_COVERAGE"
+    && echo -e "${RED}PUSH_COVERAGE=$PUSH_COVERAGE"
   - julia --check-bounds=yes --color=yes --inline=no -e "using Pkg; Pkg.test(coverage=true)"
     # julia -e 'using Pkg; Pkg.add("Coverage")' &&
     # if [ $JULIA_COVERAGE_VERSION == $TRAVIS_JULIA_VERSION ];
