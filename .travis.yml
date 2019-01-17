@@ -13,15 +13,13 @@ git:
 env:
   global:
     - PYTHON=conda
-matrix:
-  - name: "Unit/Integration Tests"
-    env:
-      - SCRIPT=echo 'test script'
-      - AFTER=echo 'after'
-  - name: "Documentation Test"
-    env:
-      - BEFORE=echo 'before'
-      - SCRIPT=echo 'doc script'
+  matrix:
+    - NAME="Unit/Integration Tests"
+      SCRIPT=echo 'test script'
+      AFTER=echo 'after'
+    - NAME="Documentation Test"
+      BEFORE=echo 'before'
+      SCRIPT=echo 'doc script'
 
 before_script: echo "$BEFORE" && $BEFORE
 script: echo "$SCRIPT" && $SCRIPT
