@@ -16,9 +16,9 @@ env:
   matrix:
     - NAME="Unit/Integration Tests"
       SCRIPT="echo \"test script\""
-      AFTER=echo 'after'
+      AFTER="julia -e \"using Pkg; Pkg.add('Coverage'); using Coverage; Codecov.submit(Codecov.process_folder())\""
     - NAME="Documentation Test"
-      BEFORE=echo 'before'
+      BEFORE="julia -e \"using Pkg; Pkg.add(PackageSpec(name='Documenter', version='0.19'))\""
       SCRIPT=echo 'doc script'
 
 before_script: echo "$BEFORE" && $BEFORE
