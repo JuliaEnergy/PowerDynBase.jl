@@ -13,11 +13,12 @@ git:
 env:
   # global:
   #   - PYTHON=conda
-  - SCRIPT="echo 1"
-    NAME="Unit/Integration Tests"
+  - NAME="Unit/Integration Tests"
+    SCRIPT="echo 1"
+
 
 script: $SCRIPT
-name: "$NAME"
+# name: "$NAME"
 
 # before_install:
 #   - julia -e "using InteractiveUtils; versioninfo();"
