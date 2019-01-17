@@ -25,7 +25,7 @@ script:
     && julia --check-bounds=yes --color=yes --inline=no -e "using Pkg; Pkg.test(coverage=true)"
     && julia -e 'using Pkg; Pkg.add("Coverage"); using Coverage; res=Codecov.process_folder();
           if ENV["PUSH_COVERAGE"] == "true" Codecov.submit(res) end;
-          covered_lines, total_lines =  get_summary(res); println("covered_lines/total_lines = $covered_lines/$total_lines = ${covered_lines/total_lines}");'
+          covered_lines, total_lines =  get_summary(res); println("covered_lines/total_lines = $covered_lines/$total_lines = $(covered_lines/total_lines)");'
   - julia -e 'using Pkg; Pkg.add(PackageSpec(name="Documenter", version="0.19"))'
     && julia docs/make.jl
 
