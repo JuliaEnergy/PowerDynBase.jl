@@ -31,12 +31,12 @@ env:
 # script: echo "$SCRIPT" && $SCRIPT
 # after_success: echo "$AFTER" && $AFTER
 script:
-  # - if [ $JULIA_COVERAGE_VERSION == $TRAVIS_JULIA_VERSION ]; then PUSH_COVERAGE=true; else PUSH_COVERAGE=false; fi && echo "PUSH_COVERAGE=$PUSH_COVERAGE"
+  - echo "Julia $TRAVIS_JULIA_VERSION"
+  - if [ $JULIA_COVERAGE_VERSION == $TRAVIS_JULIA_VERSION ]; then PUSH_COVERAGE=true; else PUSH_COVERAGE=false; fi && echo "PUSH_COVERAGE=$PUSH_COVERAGE"
   # - julia --check-bounds=yes --color=yes --inline=no -e "using Pkg; Pkg.test(coverage=true)" &&
   #   julia -e 'using Pkg; Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder())'
   # - julia -e 'using Pkg; Pkg.add(PackageSpec(name="Documenter", version="0.19"))' &&
   #   julia docs/make.jl
-  - echo "Julia $TRAVIS_JULIA_VERSION"
 # script:
 #   - echo "Julia $TRAVIS_JULIA_VERSION"
 #   - echo "Again Julia $TRAVIS_JULIA_VERSION"
