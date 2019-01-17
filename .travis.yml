@@ -22,7 +22,7 @@ before_script:
   - julia -e 'using Pkg; Pkg.add(PackageSpec(name="Documenter", version="0.19"))'
 
 # uncomment the following lines to override the default test script
-jobs:
+matrix:
   include:
     - name: "Unit/Integration Tests"
       script:
