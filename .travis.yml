@@ -14,8 +14,10 @@ env:
   # global:
   #   - PYTHON=conda
   - SCRIPT="echo 1"
+    NAME="Unit/Integration Tests"
 
 script: $SCRIPT
+name: $NAME
 
 # before_install:
 #   - julia -e "using InteractiveUtils; versioninfo();"
