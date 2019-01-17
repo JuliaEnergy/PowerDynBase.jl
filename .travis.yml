@@ -26,7 +26,6 @@ env:
 # after_success: echo "$AFTER" && $AFTER
 
 script:
-  matrix:
     - "echo "Julia $TRAVIS_JULIA_VERSION"
     - "echo "Again Julia $TRAVIS_JULIA_VERSION"
 
