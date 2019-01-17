@@ -27,7 +27,7 @@ env:
 script:
  # - julia -e 'Pkg.clone(pwd()); Pkg.build("DPSABase"); Pkg.test("DPSABase"; coverage=true)'
   - echo "Julia $TRAVIS_JULIA_VERSION" && $(exit 1)
-  - echo "Again Julia $TRAVIS_JULIA_VERSION"
+  - echo "Again Julia $TRAVIS_JULIA_VERSION" &&
     echo "Again 2 Julia $TRAVIS_JULIA_VERSION"
 # script:
 #   - "echo "Julia $TRAVIS_JULIA_VERSION"
