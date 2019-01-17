@@ -25,26 +25,30 @@ env:
 # script: echo "$SCRIPT" && $SCRIPT
 # after_success: echo "$AFTER" && $AFTER
 
-jobs:
-  include:
-    - stage: Test
-      julia:
-        matrix:
-          - 1.0
-          - 1.1
-      script: echo "$TRAVIS_JULIA_VERSION"
-    - stage: "Changelog Check"
-      name: "Changelog Check"
-      if: type IN (pull_request)
-      language: minimal
-      before_install:
-      before_script:
-      script:
-        - git fetch origin master:master
-        # show all changed files for debugging
-        - git diff HEAD master --name-only
-        # check if CHANGELOG.md has been modified
-        - git diff HEAD master --name-only | grep ^CHANGELOG.md$ || (ret=$? && echo "You didn't provide the details of your change in CHANGELOG.md" && exit $ret)
+matrix:
+  - script: "echo "Julia $TRAVIS_JULIA_VERSION"
+  - script: "echo "Again Julia $TRAVIS_JULIA_VERSION"
+
+# jobs:
+#   include:
+#     - stage: Test
+#       julia:
+#         matrix:
+#           - 1.0
+#           - 1.1
+#       script: echo "$TRAVIS_JULIA_VERSION"
+#     - stage: "Changelog Check"
+#       name: "Changelog Check"
+#       if: type IN (pull_request)
+#       language: minimal
+#       before_install:
+#       before_script:
+#       script:
+#         - git fetch origin master:master
+#         # show all changed files for debugging
+#         - git diff HEAD master --name-only
+#         # check if CHANGELOG.md has been modified
+#         - git diff HEAD master --name-only | grep ^CHANGELOG.md$ || (ret=$? && echo "You didn't provide the details of your change in CHANGELOG.md" && exit $ret)
 
 # before_install:
 #   - julia -e "using InteractiveUtils; versioninfo();"
