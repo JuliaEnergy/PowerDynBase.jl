@@ -25,8 +25,9 @@ env:
 #       SCRIPT=echo 'doc script'
 #
 # before_script: echo "$BEFORE" && $BEFORE
-before_script:
-  - alias echo='echo -e'
+# before_script:
+#   - alias echo='echo -e'
+
 # script: echo "$SCRIPT" && $SCRIPT
 # after_success: echo "$AFTER" && $AFTER
 script:
