@@ -16,13 +16,13 @@ env:
   matrix:
     - NAME="Unit/Integration Tests"
       # run the tests
-      SCRIPT='echo 1' #'julia --check-bounds=yes --color=yes --inline=no -e "using Pkg; Pkg.test(coverage=true)"'
-      AFTER='echo 1' #'julia -e \'using Pkg; Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder())\''
+      SCRIPT=echo 1 #'julia --check-bounds=yes --color=yes --inline=no -e "using Pkg; Pkg.test(coverage=true)"'
+      AFTER=echo 1 #'julia -e \'using Pkg; Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder())\''
     - NAME="Documentation Test"
       # install documenter
-      BEFORE='echo 1' #'julia -e \'using Pkg; Pkg.add(PackageSpec(name="Documenter", version="0.19"))\''
+      BEFORE=echo 1 #'julia -e \'using Pkg; Pkg.add(PackageSpec(name="Documenter", version="0.19"))\''
       # create the docs
-      SCRIPT='echo 1' #'julia docs/make.jl'
+      SCRIPT=echo 1 #'julia docs/make.jl'
 
 before_script: echo "$BEFORE" && $BEFORE
 script: echo "$SCRIPT" && $SCRIPT
