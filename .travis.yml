@@ -3,9 +3,9 @@ language: julia
 os:
   - linux
   # - osx
-julia:
-  - 1.0
-  - 1.1
+# julia:
+#   - 1.0
+#   - 1.1
 notifications:
   email: false
 git:
@@ -13,20 +13,26 @@ git:
 env:
   global:
     - PYTHON=conda
-  matrix:
-    - NAME="Unit/Integration Tests"
-      SCRIPT="echo \"test script\""
-      AFTER="julia -e 'using Pkg; Pkg.add(\"Coverage\"); using Coverage; Codecov.submit(Codecov.process_folder())'"
-    - NAME="Documentation Test"
-      BEFORE="julia -e \"using Pkg; Pkg.add(PackageSpec(name='Documenter', version='0.19'))\""
-      SCRIPT=echo 'doc script'
+#   matrix:
+#     - NAME="Unit/Integration Tests"
+#       SCRIPT="echo \"test script\""
+#       AFTER="julia -e 'using Pkg; Pkg.add(\"Coverage\"); using Coverage; Codecov.submit(Codecov.process_folder())'"
+#     - NAME="Documentation Test"
+#       BEFORE="julia -e \"using Pkg; Pkg.add(PackageSpec(name='Documenter', version='0.19'))\""
+#       SCRIPT=echo 'doc script'
+#
+# before_script: echo "$BEFORE" && $BEFORE
+# script: echo "$SCRIPT" && $SCRIPT
+# after_success: echo "$AFTER" && $AFTER
 
-before_script: echo "$BEFORE" && $BEFORE
-script: echo "$SCRIPT" && $SCRIPT
-after_success: echo "$AFTER" && $AFTER
-
-matrix:
+jobs:
   include:
+    - stage: Test
+      julia:
+        matrix:
+          - 1.0
+          - 1.1
+      script: echo "$TRAVIS_JULIA_VERSION"
     - stage: "Changelog Check"
       name: "Changelog Check"
       if: type IN (pull_request)
