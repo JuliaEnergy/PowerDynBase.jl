@@ -22,7 +22,8 @@ before_script:
   - julia -e 'using Pkg; Pkg.add(PackageSpec(name="Documenter", version="0.19"))'
 
 # uncomment the following lines to override the default test script
-- script:
+- stage: Test
+  script:
     - julia --check-bounds=yes --color=yes --inline=no -e "using Pkg; Pkg.test(coverage=true)"
   after_success:
     # push coverage results to Codecov
@@ -43,4 +44,4 @@ before_script:
     # show all changed files for debugging
     - git diff HEAD master --name-only
     # check if CHANGELOG.md has been modified
-    - git diff HEAD master --name-only | grep ^CHANGELOG.md$
+    - git diff HEAD master --name-only | grep ^CHANGELOG.md$ || (ret=$? && echo "You didn't provide the details of your change in CHANGELOG.md" && exit $ret)
