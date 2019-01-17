@@ -11,8 +11,8 @@ notifications:
 git:
   depth: 99999999
 env:
-  global:
-    - PYTHON=conda
+  # global:
+  #   - PYTHON=conda
   - SCRIPT="echo 1"
 
 script: $SCRIPT
