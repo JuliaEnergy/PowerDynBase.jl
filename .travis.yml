@@ -15,11 +15,11 @@ env:
     - PYTHON=conda
   matrix:
     - NAME="Unit/Integration Tests"
-      SCRIPT=echo 1 #'julia --check-bounds=yes --color=yes --inline=no -e "using Pkg; Pkg.test(coverage=true)"'
-      AFTER=echo 1 #'julia -e \'using Pkg; Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder())\''
+      SCRIPT=echo 'test script'
+      AFTER=echo 'after'
     - NAME="Documentation Test"
-      BEFORE=echo 1 #'julia -e \'using Pkg; Pkg.add(PackageSpec(name="Documenter", version="0.19"))\''
-      SCRIPT=echo 1 #'julia docs/make.jl'
+      BEFORE=echo 'before'
+      SCRIPT=echo 'doc script'
 
 before_script: echo "$BEFORE" && $BEFORE
 script: echo "$SCRIPT" && $SCRIPT
