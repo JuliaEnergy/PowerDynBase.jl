@@ -24,10 +24,13 @@ env:
 # before_script: echo "$BEFORE" && $BEFORE
 # script: echo "$SCRIPT" && $SCRIPT
 # after_success: echo "$AFTER" && $AFTER
-
 script:
-  - "echo "Julia $TRAVIS_JULIA_VERSION"
-  - "echo "Again Julia $TRAVIS_JULIA_VERSION"
+ # - julia -e 'Pkg.clone(pwd()); Pkg.build("DPSABase"); Pkg.test("DPSABase"; coverage=true)'
+ - julia --check-bounds=yes --color=yes -e "using Pkg; Pkg.test(coverage=true)"
+ - julia docs/make.jl
+# script:
+#   - "echo "Julia $TRAVIS_JULIA_VERSION"
+#   - "echo "Again Julia $TRAVIS_JULIA_VERSION"
 
 # jobs:
 #   include:
