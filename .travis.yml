@@ -15,7 +15,7 @@ env:
     - PYTHON=conda
   matrix:
     - NAME="Unit/Integration Tests"
-      SCRIPT='echo \'test script\''
+      SCRIPT="echo \"test script\""
       AFTER=echo 'after'
     - NAME="Documentation Test"
       BEFORE=echo 'before'
