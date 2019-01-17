@@ -15,12 +15,12 @@ env:
     - PYTHON=conda
   matrix:
     - NAME="Unit/Integration Tests"
-      SCRIPT="echo 1"
+      SCRIPT=echo 1
     - NAME="Documentation Test"
       BEFORE=julia -e 'using Pkg; Pkg.add(PackageSpec(name="Documenter", version="0.19"))'
-      SCRIPT="echo 1"
+      SCRIPT=echo 1
 
-
+before_script: $BEFORE
 script: $SCRIPT
 
 # before_install:
