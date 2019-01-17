@@ -17,7 +17,7 @@ env:
     NAME="Unit/Integration Tests"
 
 script: $SCRIPT
-name: $NAME
+name: "$NAME"
 
 # before_install:
 #   - julia -e "using InteractiveUtils; versioninfo();"
