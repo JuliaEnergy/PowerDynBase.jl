@@ -35,8 +35,9 @@ env:
 script:
   - if [ $JULIA_COVERAGE_VERSION == $TRAVIS_JULIA_VERSION ]; then PUSH_COVERAGE=true; else PUSH_COVERAGE=false; fi
     && echo -e "${RED}${BOLD}PUSH_COVERAGE=$PUSH_COVERAGE"
-  - julia --check-bounds=yes --color=yes --inline=no -e "using Pkg; Pkg.test(coverage=true)"
-    && julia -e 'using Pkg; Pkg.add("Coverage")'
+    && julia --check-bounds=yes --color=yes --inline=no -e "using Pkg; Pkg.test(coverage=true)"
+    && julia -e 'using Pkg; Pkg.add("Coverage"); using Coverage; res=Codecov.process_folder();
+       @show get_summary(res)'
     # if [ $JULIA_COVERAGE_VERSION == $TRAVIS_JULIA_VERSION ];
     #   then julia -e 'using Coverage; res=Codecov.process_folder(); @show get_summary(res); Codecov.submit(res)';
     #   else julia -e 'using Coverage; res=Codecov.process_folder(); @show get_summary(res);
