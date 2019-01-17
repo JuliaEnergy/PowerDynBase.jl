@@ -5,6 +5,7 @@ os:
   # - osx
 julia:
   - 1.0
+  - 1.1
 notifications:
   email: false
 git:
@@ -23,8 +24,7 @@ before_script:
 # uncomment the following lines to override the default test script
 jobs:
   include:
-    - stage: "Tests"
-      name: "Unit/Integration Tests"
+    - name: "Unit/Integration Tests"
       script:
         - julia --check-bounds=yes --color=yes --inline=no -e "using Pkg; Pkg.test(coverage=true)"
       after_success:
