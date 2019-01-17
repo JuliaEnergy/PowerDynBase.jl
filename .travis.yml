@@ -17,6 +17,7 @@ env:
     - RED='\033[0;31m'
     - GREEN='\033[0;32m'
     - NOCOLOR='\033[0m'
+    - BOLD=$(tput bold)
 #   matrix:
 #     - NAME="Unit/Integration Tests"
 #       SCRIPT="echo \"test script\""
@@ -33,9 +34,9 @@ env:
 # after_success: echo "$AFTER" && $AFTER
 script:
   - if [ $JULIA_COVERAGE_VERSION == $TRAVIS_JULIA_VERSION ]; then PUSH_COVERAGE=true; else PUSH_COVERAGE=false; fi
-    && echo -e "${RED}PUSH_COVERAGE=$PUSH_COVERAGE"
+    && echo -e "${RED}${BOLD}PUSH_COVERAGE=$PUSH_COVERAGE"
   - julia --check-bounds=yes --color=yes --inline=no -e "using Pkg; Pkg.test(coverage=true)"
-    # julia -e 'using Pkg; Pkg.add("Coverage")' &&
+    && julia -e 'using Pkg; Pkg.add("Coverage")' &&
     # if [ $JULIA_COVERAGE_VERSION == $TRAVIS_JULIA_VERSION ];
     #   then julia -e 'using Coverage; res=Codecov.process_folder(); @show get_summary(res); Codecov.submit(res)';
     #   else julia -e 'using Coverage; res=Codecov.process_folder(); @show get_summary(res);
