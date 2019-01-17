@@ -19,16 +19,18 @@ env:
     - NOCOLOR='\033[0m'
     - BOLD=$(tput bold)
 
-# script:
-#   - if [ $JULIA_COVERAGE_VERSION == $TRAVIS_JULIA_VERSION ]; then export PUSH_COVERAGE=true; else export PUSH_COVERAGE=false; fi
-#     && echo -e "${RED}${BOLD}PUSH_COVERAGE=$PUSH_COVERAGE"
-#     && julia --check-bounds=yes --color=yes --inline=no -e "using Pkg; Pkg.test(coverage=true)"
-#     && julia -e 'using Pkg; Pkg.add("Coverage"); using Coverage; res=Codecov.process_folder();
-#        covered_lines, total_lines =  get_summary(res); println("covered_lines/total_lines = \$covered_lines/\$total_lines = \${covered_lines/total_lines}");
-#        if ENV["PUSH_COVERAGE"] == "true" Codecov.submit(res) end'
-#   # - julia -e 'using Pkg; Pkg.add(PackageSpec(name="Documenter", version="0.19"))'
-#   #   && julia docs/make.jl
-script: echo "Julia $TRAVIS_JULIA_VERSION"
+script:
+  - if [ $JULIA_COVERAGE_VERSION == $TRAVIS_JULIA_VERSION ]; then export PUSH_COVERAGE=true; else export PUSH_COVERAGE=false; fi
+    && echo -e "${RED}${BOLD}PUSH_COVERAGE=$PUSH_COVERAGE"
+    && julia --check-bounds=yes --color=yes --inline=no -e "using Pkg; Pkg.test(coverage=true)"
+    && julia -e 'using Pkg; Pkg.add("Coverage"); using Coverage; res=Codecov.process_folder();
+       covered_lines, total_lines =  get_summary(res); println("covered_lines/total_lines = \$covered_lines/\$total_lines = \${covered_lines/total_lines}");
+       if ENV["PUSH_COVERAGE"] == "true" Codecov.submit(res) end'
+  - julia -e 'using Pkg; Pkg.add(PackageSpec(name="Documenter", version="0.19"))'
+    && julia docs/make.jl
+
+# keep the below for testing reasons
+# script: echo "Julia $TRAVIS_JULIA_VERSION"
 
 jobs:
   include:
