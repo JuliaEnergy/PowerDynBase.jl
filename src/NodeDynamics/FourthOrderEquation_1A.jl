@@ -76,7 +76,7 @@ end [[θ,dθ],[ω, dω]] begin
 
     de_c = de_d + 1im*de_q
     du = -1im*de_c*exp(1im*θ)+ u*1im*ω
-    dω = (P - D*ω - p - (X_q_dash - X_d_dash) * i_d * i_q) * Ω_H
+    dω = (P - D*ω - p - (X_q - X_d_dash) * i_d * i_q) * Ω_H
 end
 
 export FourthEq_1A
