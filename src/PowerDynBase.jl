@@ -59,6 +59,7 @@ include("NodeDynamics/SwingEquation.jl")
 include("NodeDynamics/FourthOrderEquation.jl")
 include("NodeDynamics/VoltageSourceInverterMinimal.jl")
 include("NodeDynamics/VoltageSourceInverterVoltagePT1.jl")
+include("NodeDynamics/CurrentSourceInverter.jl")
 
 
 

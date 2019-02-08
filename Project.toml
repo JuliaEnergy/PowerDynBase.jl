@@ -7,7 +7,12 @@ version = "0.2.1"
 Lazy = "50d2b5c4-7a5e-59d5-8109-a42b560f39c0"
 MacroTools = "1914dd2f-81c6-5fcd-8719-6d5c9610ff09"
 Markdown = "d6f4376e-aef5-505a-96c1-9c027394607a"
+Modia = "cb905087-75eb-5f27-8515-1ce0ec8e839e"
+ModiaMath = "67ccffd1-116d-535b-ad39-76a8fd0cbf71"
 Parameters = "d96e819e-fc66-5662-9728-84c9c7592b0a"
+Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
+PyCall = "438e738f-606a-5dbb-bf0a-cddfbfd45ab0"
+PyPlot = "d330b81b-6aea-500a-939a-2ce795aea3ee"
 
 [compat]
 Julia = "=1.0"

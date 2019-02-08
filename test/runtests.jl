@@ -218,7 +218,30 @@ println("#### Single Node Tests ####")
         @test expand.(dint[1]) == expand.(1/τ_P*(-omega-K_P*(p-P)))
         @test expand.(dint[2]) == expand.(1/τ_Q*(q-q_m))
     end
-end
+    let
+    println("## NodeDynamics/CurrentSourceInverter.jl ##")
+    u_numerical = 3+4im
+    @syms τ_DT1 τ_P1 τ_P2 τ_Q1 τ_Q2 K_P K_Q positive=true
+    @syms P_r Q_r V_r real=true
+    @syms P_PT1 dP_PT1 Q_PT1 dQ_PT1 x dx phi omega_int real=true
+    CSIdyn = construct_node_dynamics(CSIminimal(τ_DT1=τ_DT1,τ_P1=τ_P1,τ_P2=τ_P2,τ_Q1=τ_Q1,τ_Q2=τ_Q2,K_P=K_P,K_Q=K_Q,V_r=V_r,P_r=P_r,Q_r=Q_r))
+    dint = [dx,dP_PT1,dQ_PT1]; int = [x,P_PT1,Q_PT1]; int_test = copy(int)
+    du = CSIdyn.rhs(dint, u_numerical, i, int, t)
+    p = real(u_numerical*conj(i))
+    q = imag(u_numerical*conj(i))
+    v = abs(u_numerical)
+    u_numerical
+    phi = angle(u_numerical)
+    omega_int = 1/(τ_DT1^2*2π)*x+1/(τ_DT1*2π)*phi
+    dp = 1/τ_P2*(-p + P_PT1)
+    dq = 1/τ_Q2*(-q + Q_PT1)
+    ds = dp + 1im*dq
+    @test du == ds/conj(i)
+    @test expand.(dint[1]) == expand.(1/τ_DT1*x + phi)
+    @test expand.(dint[2]) == expand.(1/τ_P1*(-P_PT1+ K_P*omega_int + P_r))
+    @test expand.(dint[3]) == expand.(1/τ_Q1*(-Q_PT1+ K_Q*(v- V_r)+Q_r))
+        end
+    end
 
 
 println("#### Grid Construction Tests ####")
