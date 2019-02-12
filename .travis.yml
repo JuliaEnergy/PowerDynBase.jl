@@ -22,7 +22,7 @@ env:
 addons:
   apt:
     packages:
-    - MbedTLS v0.6.6
+    - MbedTLS
 
 script:
   - if [ $JULIA_COVERAGE_VERSION == $TRAVIS_JULIA_VERSION ]; then export PUSH_COVERAGE=true; else export PUSH_COVERAGE=false; fi
