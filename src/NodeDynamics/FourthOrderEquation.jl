@@ -24,7 +24,6 @@ Additionally to ``u``, it has the internal dynamic variables
 - `P`: active (real) power output, also called the mechanical torque applied to the shaft, given in [pu]
 - `D`: damping coefficient (given in [s], see P. Sauer, eq. (5.156) where the damping torque is equal `Dω`)
 - `Ω`: rated frequency of the power grid, often 50Hz
-- `Ω_H`: normalized `Ω` (given in [``s^{-2}``]) according to `Ω_H = (Ω⋅2\pi) / H`
 - `T_d_dash`: time constant of d-axis, given in [s], see P. Sauer, chapter 3.7, p. 54 for a general explanation on time constants
 - `T_q_dash`: time constant of q-axis, given in [s]
 - `X_d_dash`: transient reactance of d-axis, given in [pu]
