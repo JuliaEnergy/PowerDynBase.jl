@@ -4,8 +4,7 @@ VSIVoltagePT1(;τ_v,τ_P,τ_Q,K_P,K_Q,E_r,P,Q)
 ```
 
 A node type that applies the frequency and voltage droop control to control the frequency and
-voltage dynamics. The following implementation is taken from
-J. Schiffer et. al. , Automatica 50 (2014) 2457–2469.
+voltage dynamics.
 
 `VSIVoltagePT1` models an inverters as AC voltage source which means the amplitude and
 frequency can defined by the designer (often called grid-forming inverter mode).
