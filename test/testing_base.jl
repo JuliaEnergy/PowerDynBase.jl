@@ -9,9 +9,9 @@ begin
         using Test
         using Random
         random_seed = 1234
-        @show random_seed
         Random.seed!(random_seed)
         using LinearAlgebra
+        using Suppressor
 end
 
 begin

@@ -3,7 +3,7 @@ include("testing_base.jl")
 using Crayons
 
 struct DummyNodeDynamics{N <: PowerDynBase.AbstractNodeParameters} <: PowerDynBase.AbstractNodeDynamics{N} end
-let
+@suppress_out let
 println(Crayon(foreground = :light_gray), "OUTPUT TESTS:")
 @test_nowarn println(PQAlgebraic)
 @test_nowarn println(SwingEq)

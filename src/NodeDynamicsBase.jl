@@ -61,9 +61,6 @@ function (dyn::OrdinaryNodeDynamics)(n, u::ODEVariable, i,
     nothing
 end
 
-"Identify each subtype of [`AbstractNodeDynamics`](@ref) with its corresponding subtype of [`AbstractDEVariable`](@ref)"
-getDEVariableType(::Type{Val{OrdinaryNodeDynamics}}) = ODEVariable
-
 "Get number of internal arguments of the node."
 nint(dyn::OrdinaryNodeDynamics) = dyn.n_int
 
@@ -129,8 +126,6 @@ OrdinaryNodeDynamicsWithMass(;rhs::Function, n_int, m_u, m_int, parameters) = Or
     m_u, m_int)
 (dyn::OrdinaryNodeDynamicsWithMass)(args...;kwargs...) = dyn.ode_dynamics(args...;kwargs...)
 
-getDEVariableType(::Type{Val{OrdinaryNodeDynamicsWithMass}}) = ODEVariable
-
 nint(dyn::OrdinaryNodeDynamicsWithMass) = nint(dyn.ode_dynamics)
 
 OrdinaryNodeDynamics(n::OrdinaryNodeDynamicsWithMass) = n.ode_dynamics
@@ -176,8 +171,6 @@ function (dyn::AlgebraicNodeDynamics)(i, u::DAEVariable, i_c,
     u.out[i] =  dyn.root(int.out, u.ddt[i], int.ddt, u.val[i], i_c[i], int.val, t)
     nothing
 end
-
-getDEVariableType(::Type{Val{AlgebraicNodeDynamics}}) = DAEVariable
 
 nint(dyn::AlgebraicNodeDynamics) = dyn.n_int
 

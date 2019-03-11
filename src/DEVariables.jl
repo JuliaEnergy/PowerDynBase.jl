@@ -4,9 +4,6 @@
 import Base: length, view, @__doc__
 using MacroTools
 
-issymbol(::Symbol) = true
-issymbol(::Any) = false
-
 """
     abstract type AbstractDEVariable end
 

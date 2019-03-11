@@ -1,9 +1,6 @@
 # (C) 2018 Potsdam Institute for Climate Impact Research, authors and contributors (see AUTHORS file)
 # Licensed under GNU GPL v3 (see LICENSE file)
 
-"Get the total number of internal variables for an array of node dynamics."
-total_nint(nodes::AbstractVector{<:AbstractNodeDynamics}) = sum(nint, nodes)
-
 """
 Get the total number of dynamic variables for an array of node dynamics.
 

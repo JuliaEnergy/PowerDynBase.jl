@@ -93,3 +93,9 @@ full_macro_return_test = quote
         $(symbolsof_fct_test)
 end |> rlr |> rsb
 @test full_macro_return == full_macro_return_test
+
+struct UnknownDynamicsWithMass{N <: AbstractNodeParameters} <: PowerDynBase.AbstractNodeDynamics{N} end
+@test_throws PowerDynBase.NodeDynamicsError PowerDynBase.cndfunction_builder!(Val{UnknownDynamicsWithMass})
+@test_throws PowerDynBase.NodeDynamicsError PowerDynBase.generate_symbolsof_fct(Val{UnknownDynamicsWithMass}, nothing, nothing)
+
+@test_nowarn @suppress showdefinition(SwingEq)
