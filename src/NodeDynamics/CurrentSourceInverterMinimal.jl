@@ -1,6 +1,6 @@
 @doc doc"""
 ```Julia
-CSIMinimal(;τ_v,τ_P,τ_Q,K_P,K_Q,E_r,P,Q)
+CSIMinimal(;I_r)
 ```
 
 A node type that keeps the current fixed as a desired values `I_r`.
