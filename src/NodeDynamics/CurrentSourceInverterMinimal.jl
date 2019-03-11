@@ -18,7 +18,7 @@ Here, additionally to `u`, there are no internal dynamic variables.
 # Mathematical Representation
 Using `CSIMinimal` for node ``a`` gives:
 ```math
-i_a = I_r
+0 = I_{r,a} - \left\|i_a\right\|
 ```
 
 """
