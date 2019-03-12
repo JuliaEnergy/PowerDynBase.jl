@@ -24,7 +24,7 @@ Using `CSIMinimal` for node ``a`` gives:
 """
 @DynamicNode CSIMinimal(I_r) <: OrdinaryNodeDynamics() begin
 end [] begin
-    du = abs(i) - I_r
+    du = i - I_r
 end
 
 export CSIMinimal
