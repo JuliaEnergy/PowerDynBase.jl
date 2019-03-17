@@ -11,7 +11,8 @@ which is implemented according to P. Sauer, "Power System Dynamics and Stability
 For an illustration of a synchronous machine schematic see P. Sauer, Fig. 3.1 on p. 25.
 
 Exciter and Automatic Voltage Regulator:
-The equations for the systems that balance the AC synchronous machine voltage level by increasing or decreasing the exciter DC voltage.
+The equations for the systems that balance the AC synchronous machine voltage level by increasing or decreasing the exciter DC voltage. Note, within this model, the transient reactance in the d-axis
+of the generator needs to be included into the nodal admittance matrix. As the bus of this generator node type is constructed to be an internal generator bus.
 
 Governor:
 The prime mover provides the mechanism for controlling the synchronous machine speed and, hence, terminal voltage frequency.
