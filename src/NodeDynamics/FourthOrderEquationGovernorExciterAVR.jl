@@ -59,7 +59,7 @@ Using `FourthEq` for node ``a`` applies the equations
     e_c= e_d + je_q = jue^{-j\theta}\\
     i  = -ji'e^{j\theta} = -j(i_d+ j i_q )e^{j\theta} = Y^L \cdot u \\
     i_c= i_d + ji_q = jie^{-j\theta}\\
-    p = \Re (i^* u)
+    p = \Re (i^* u) \\
 ```
 
 where complex voltage and current are described in a co-rotating frame with axes labeled d and q.
@@ -69,23 +69,23 @@ The fourth-order equations read (according to P. Sauer, "Power System Dynamics a
     \frac{d\theta}{dt} = \omega \\
     \frac{d\omega}{dt} = (P-D\omega - p -(X'_q-X'_d)i_d i_q)Ω_H\\
     \frac{d e_q}{dt} = \frac{1}{T'_d} (- e_q - (X_d - X'_d) i_{d}+ E_f) \\
-    \frac{d e_d}{dt} = \frac{1}{T'_q} (- e_d + (X_q - X'_q) i_{q})  \\
+    \frac{d e_d}{dt} = \frac{1}{T'_q} (- e_d + (X_q - X'_q) i_{q}) \\
 ```
 
 # Exciter and AVR equations
 ```math
-	u_{terminal} = e'_c - j X'_d i
-	S_{e}(e_{fd}) = 0.098e^{0.55 e_{fd}} (Sauer p70)
-	\dfrac{dR_f}{dt} = \dfrac{1}{T_f} (-R_f + \dfrac{K_f}{T_f} e_f)
-	\dfrac{dv_r}{dt} = \dfrac{1}{T_a} (-v_r + (K_a R_f) -\dfrac{K_a K_f}{T_f}e_{fd} + K_a (V_{ref} - abs(u_{terminal})))
-	\dfrac{de_{fd}}{dt} = \dfrac{1}{T_e} (-K_e + S_{e}(e_{fd})e_{fd} + v_r)
+	u_{terminal} = e'_c - j X'_d i \\
+	S_{e}(e_{fd}) = 0.098e^{0.55 e_{fd}} (Sauer p70) \\
+	\dfrac{dR_f}{dt} = \dfrac{1}{T_f} (-R_f + \dfrac{K_f}{T_f} e_f) \\
+	\dfrac{dv_r}{dt} = \dfrac{1}{T_a} (-v_r + (K_a R_f) -\dfrac{K_a K_f}{T_f}e_{fd} + K_a (V_{ref} - abs(u_{terminal}))) \\
+	\dfrac{de_{fd}}{dt} = \dfrac{1}{T_e} (-K_e + S_{e}(e_{fd})e_{fd} + v_r) \\
 ```
 
 # Governor equations
 ```math
-    \dfrac{dP_m}{dt} = \dfrac{1}{T_{ch}} (-P_m + P_{sv})
-    Assumption: T_m = P_m
-    \dfrac{dP_{sv}}{dt} = \dfrac{1}{T_{sv}} (-P_{sv} + P_c -\dfrac{1}{R_d} (\dfrac{\omega}{\omega_s} - 1))
+    \dfrac{dP_m}{dt} = \dfrac{1}{T_{ch}} (-P_m + P_{sv}) \\
+    Assumption: T_m = P_m \\
+    \dfrac{dP_{sv}}{dt} = \dfrac{1}{T_{sv}} (-P_{sv} + P_c -\dfrac{1}{R_d} (\dfrac{\omega}{\omega_s} - 1)) \\
 ```
 
 The equations for frequency and phase represent energy conservation and phase shift.
@@ -94,7 +94,7 @@ conservative coupling field.
 
 With the PowerDynamics.jl naming conventions of ``i`` and ``u`` they read as
 ```math
-   \dot u = \frac{d}{dt}(-j e_c e^{j\theta})=-j(\dot e_d + j\dot e_q)e^{j\theta} + uj\omega
+   \dot u = \frac{d}{dt}(-j e_c e^{j\theta})=-j(\dot e_d + j\dot e_q)e^{j\theta} + uj\omega \\
 ```
 """
 @DynamicNode FourthOrderEqGovernorExciterAVR(H, P, D, Ω, T_d_dash ,T_q_dash ,X_q_dash ,X_d_dash,X_d, X_q, T_e, T_a, T_f, K_e, K_a, K_f, V_ref, R_d, T_sv, T_ch) <: OrdinaryNodeDynamics() begin # S_e_fd,
@@ -109,7 +109,6 @@ With the PowerDynamics.jl naming conventions of ``i`` and ``u`` they read as
     @assert T_e > 0 "Exciter time constant"
     @assert T_a > 0 "Maximum voltage regulator output"
     @assert T_f > 0 "Excitation control system stabilizer time constant"
-    # @assert K_e > -10
     @assert K_a > 0 "Voltage Regulator gain should be >0"
     @assert K_f > 0 "Excitation control system stabilizer gains should be >0"
     @assert V_ref > 0 "Reference voltage for the AVR should be >0"
