@@ -37,7 +37,6 @@ Additionally to ``u``, it has the internal dynamic variables
 - `X_q_dash`: transient reactance of q-axis, given in [pu]
 - `X_d`: reactance of d-, given in [pu]
 - `X_d`: reactance of q-axis, given in [pu]
-- `E_f`: scaled field voltage, which, if set equal to 1.0 pu, gives 1.0 pu open-circuit terminal voltage. The physical device that provides the value of `E_f` is called the exciter (according to P. Sauer, p. 65)
 
 - 'T_e' : Exciter time constant, integration rate associated with exciter control [s]
 - 'T_a' : Maximum voltage regulator output [s]
@@ -75,7 +74,7 @@ The fourth-order equations read (according to P. Sauer, "Power System Dynamics a
 # Exciter and AVR equations
 ```math
 	u_{terminal} = e'_c - j X'_d i \\
-	S_{e}(e_{fd}) = 0.098e^{0.55 e_{fd}} (Sauer p70) \\
+	S_{e}(e_{fd}) = 0.098e^{0.55 e_{fd}} (according to P. Sauer, p. 70) \\
 	\dfrac{dR_f}{dt} = \dfrac{1}{T_f} (-R_f + \dfrac{K_f}{T_f} e_f) \\
 	\dfrac{dv_r}{dt} = \dfrac{1}{T_a} (-v_r + (K_a R_f) -\dfrac{K_a K_f}{T_f}e_{fd} + K_a (V_{ref} - abs(u_{terminal}))) \\
 	\dfrac{de_{fd}}{dt} = \dfrac{1}{T_e} (-K_e + S_{e}(e_{fd})e_{fd} + v_r) \\
