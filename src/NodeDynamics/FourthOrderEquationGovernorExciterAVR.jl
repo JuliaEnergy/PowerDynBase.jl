@@ -106,16 +106,16 @@ With the PowerDynamics.jl naming conventions of ``i`` and ``u`` they read as
     @assert X_q_dash >= 0 "transient reactance of q-axis (X_q_dash) should be >=0"
     @assert X_d >= 0 "reactance of d-axis (X_d_dash) should be >=0"
     @assert X_q >= 0 "reactance of q-axis (X_q_dash) should be >=0"
-    @assert T_e > 0
-    @assert T_a > 0
-    @assert T_f > 0
+    @assert T_e > 0 "Exciter time constant"
+    @assert T_a > 0 "Maximum voltage regulator output"
+    @assert T_f > 0 "Excitation control system stabilizer time constant"
     # @assert K_e > -10
-    @assert K_a > 0
-    @assert K_f > 0
-    @assert V_ref > 0
-    @assert R_d > 0
-    @assert T_sv > 0
-    @assert T_ch > 0
+    @assert K_a > 0 "Voltage Regulator gain should be >0"
+    @assert K_f > 0 "Excitation control system stabilizer gains should be >0"
+    @assert V_ref > 0 "Reference voltage for the AVR should be >0"
+    @assert R_d > 0 "Speed regulation should be >0"
+    @assert T_sv > 0 "Steam Valve time constant should be >0"
+    @assert T_ch > 0 "T_ch' : Steam Chest time constant should be >0"
 
     Ω_H = (Ω * 2pi) / H #    norm = 2 * H / (2 * np.pi * 50)  # normalize the parameters as done for coupling_const, input_power, damping_const
 
