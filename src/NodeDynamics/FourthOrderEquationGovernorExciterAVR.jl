@@ -106,16 +106,16 @@ With the PowerDynamics.jl naming conventions of ``i`` and ``u`` they read as
     @assert X_q_dash >= 0 "transient reactance of q-axis (X_q_dash) should be >=0"
     @assert X_d >= 0 "reactance of d-axis (X_d_dash) should be >=0"
     @assert X_q >= 0 "reactance of q-axis (X_q_dash) should be >=0"
-    # @assert T_e > 0
-    # @assert T_a > 0
-    # @assert T_f > 0
+    @assert T_e > 0
+    @assert T_a > 0
+    @assert T_f > 0
     # @assert K_e > -10
-    # @assert K_a > 0
-    # @assert K_f > 0
-    # @assert V_ref > 0
-    # @assert R_d > 0
-    # @assert T_sv > 0
-    # @assert T_ch > 0
+    @assert K_a > 0
+    @assert K_f > 0
+    @assert V_ref > 0
+    @assert R_d > 0
+    @assert T_sv > 0
+    @assert T_ch > 0
 
     Ω_H = (Ω * 2pi) / H #    norm = 2 * H / (2 * np.pi * 50)  # normalize the parameters as done for coupling_const, input_power, damping_const
 
@@ -136,7 +136,6 @@ end [[θ, dθ],[ω, dω],[e_f, de_f],[v_r, dv_r],[r_f,dr_f],[P_sv, dP_sv],[P_m, 
     de_f = (1 / T_e) * ((- (K_e + (0.098*exp(0.55*e_f))) * e_f) + v_r) #S_e_fd, Sauer p70
 
     #Governor
-
     dP_sv = (1/T_sv) * (-P_sv + P - (1/R_d)*(((ω+(Ω*2pi))/(Ω*2pi))-1))
     dP_m  = (1/T_ch) * (-P_m  + P_sv)
 
