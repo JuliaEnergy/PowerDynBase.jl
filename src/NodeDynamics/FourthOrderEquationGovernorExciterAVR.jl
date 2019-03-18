@@ -3,7 +3,7 @@
 
 @doc doc"""
 ```Julia
-FourthOrderEqGovernorExciterAVR ... (H, P, D, Ω, T_d_dash ,T_q_dash ,X_q_dash ,X_d_dash,X_d, X_q, T_e, T_a, T_f, K_e, K_a, K_f, V_ref, R_d, T_sv, T_ch)
+FourthOrderEqGovernorExciterAVR(H, P, D, Ω, T_d_dash ,T_q_dash ,X_q_dash ,X_d_dash,X_d, X_q, T_e, T_a, T_f, K_e, K_a, K_f, V_ref, R_d, T_sv, T_ch)
 ```
 
 A node type that applies the 4th-order synchronous machine model with frequency/angle and voltage dynamics, including an Exciter, Automatic Voltage Regulator and Governor
@@ -136,8 +136,8 @@ end [[θ, dθ],[ω, dω],[e_f, de_f],[v_r, dv_r],[r_f,dr_f],[P_sv, dP_sv],[P_m, 
     de_f = (1 / T_e) * ((- (K_e + (0.098*exp(0.55*e_f))) * e_f) + v_r) #S_e_fd, Sauer p70
 
     #Governor
-    dP_sv = (1/T_sv) * (-P_sv + P - (1/R_d)*(((ω+(Ω*2pi))/(Ω*2pi))-1))
-    dP_m  = (1/T_ch) * (-P_m  + P_sv)
+    dP_sv = (1 / T_sv) * (-P_sv + P - (1/R_d)*(((ω+(Ω*2pi))/(Ω*2pi))-1))
+    dP_m  = (1 / T_ch) * (-P_m  + P_sv)
 
     #Synchronous machine
     dθ = ω

@@ -161,11 +161,10 @@ de_c = de_d + 1im*de_q
 @test expand(dint[1]) == omega
 @test du == -1im*de_c*exp(1im*theta)+ u*1im*omega
 @test expand(dint[2]) == expand((P_m - D*omega - p- (X_q_dash - X_d_dash)*i_d* i_q)*2PI*Ω/H)
-
 @test expand(dint[3]) == expand((1 / T_e) * ((- (K_e + (0.098*exp(0.55*e_f))) * e_f) + v_r))
 @test expand(dint[4]) == expand((1 / T_a) * (- v_r + (K_a * r_f) - ((K_a * K_f)/T_f)*e_f + K_a*(V_ref - abs(V_mes))))
 @test expand(dint[5]) == expand((1 / T_f) * (- r_f + ((K_f/T_f) * e_f)))
-@test expand(dint[6]) == expand((1/T_sv) * (-P_sv + P - (1/R_d)*(((omega+(Ω*2PI))/(Ω*2PI))-1)))
-@test expand(dint[7]) == expand((1/T_ch) * (-P_m  + P_sv))
+@test expand(dint[6]) == expand((1 / T_sv) * (-P_sv + P - (1/R_d)*(((omega+(Ω*2PI))/(Ω*2PI))-1)))
+@test expand(dint[7]) == expand((1 / T_ch) * (-P_m  + P_sv))
 
 end
