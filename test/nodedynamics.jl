@@ -146,13 +146,10 @@ end
 @syms x_p dx_p x_q dx_q real=true
 ExpRec = construct_node_dynamics(ExponentialRec(P0=P0, Q0=Q0, Nps=Nps, Npt=Npt, Nqs=Nqs, Nqt=Nqt, Tp=Tp, Tq=Tq, V0=V0))
 dint = [dx_p,dx_q]; int = [x_p,x_q]; int_test = copy(int)
+
 ExpRec.ode_dynamics.rhs(dint, u, i, int, t)
-#dx_p = (1/Tp)*(-x_p + P0*((abs(u)/V0)^Nps) - P0*((abs(u)/V0)^Npt))
-#dx_q = (1/Tq)*(-x_q + Q0*((abs(u)/V0)^Nqs) - Q0*((abs(u)/V0)^Nqt))
-#du = (-Pd + x_p + P0*((abs(u)/V0)^Npt)) + im*(-Qd + x_q + Q0*((abs(u)/V0)^Nqt))
-@test expand(dint[1]) == expand((1/Tp)*(-x_p + P0*(v/V0)^Nps - P0*(v/V0)^Npt ))
-@test expand(dint[2]) == expand((1/Tq)*(-x_q + Q0*(v/V0)^Nqs - Q0*(v/V0)^Nqt ))
 
-
-@test ExpRec.ode_dynamics.rhs(dint, u, i, int, t) == expand.((-p + x_p + P0*((v/V0)^Npt)) + im*(-q + x_q + Q0*((v/V0)^Nqt)))
+@test expand(dint[1]) == expand((1/Tp) * (-x_p + P0*(v/V0)^Nps - P0*(v/V0)^Npt))
+@test expand(dint[2]) == expand((1/Tq) * (-x_q + Q0*(v/V0)^Nqs - Q0*(v/V0)^Nqt))
+@test expand(ExpRec.ode_dynamics.rhs(dint, u, i, int, t)) == expand((-p + x_p + P0*((v/V0)^Npt)) + im*(-q + x_q + Q0*((v/V0)^Nqt)))
 end

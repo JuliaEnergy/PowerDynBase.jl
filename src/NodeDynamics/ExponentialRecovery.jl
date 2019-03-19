@@ -42,24 +42,13 @@ Byoung-Kon Choi, Member, IEEE, Hsiao-Dong Chiang, Fellow, IEEE, Yinhong Li, Hua 
     @assert Nqt > 0 "Transient load voltage dependence p-axis should be >0"
 
 end [[x_p, dx_p],[x_q, dx_q]] begin
-    # Pd = real(u*conj(i))
-    # Qd = imag(u*conj(i))
-    #
-    # dx_p = (1/Tp)*(-x_p + P0*((abs(u)/V0)^Nps) - P0*((abs(u)/V0)^Npt))
-    # dx_q = (1/Tq)*(-x_q + Q0*((abs(u)/V0)^Nqs) - Q0*((abs(u)/V0)^Nqt))
-    #
-    # du = -Pd + x_p + P0*((abs(u)/V0)^Npt) + im*(-Qd + x_q + Q0*((abs(u)/V0)^Nqt))
-
     Pd = real(u*conj(i))
     Qd = imag(u*conj(i))
-    v = abs(u)
 
-    dx_p = (1/Tp)*(-x_p + P0*((v/V0)^Nps) - P0*((v/V0)^Npt))
-    dx_q = (1/Tq)*(-x_q + Q0*((v/V0)^Nqs) - Q0*((v/V0)^Nqt))
+    dx_p = (1/Tp)*(-x_p + P0*((abs(u)/V0)^Nps) - P0*((abs(u)/V0)^Npt))
+    dx_q = (1/Tq)*(-x_q + Q0*((abs(u)/V0)^Nqs) - Q0*((abs(u)/V0)^Nqt))
 
-    Up = -Pd + x_p + P0*(v/V0)^Npt
-    Uq = -Qd + x_q + Q0*(v/V0)^Nqt
-    du = Up + im*Uq
+    du = -Pd + x_p + P0*((abs(u)/V0)^Npt) + im*(-Qd + x_q + Q0*((abs(u)/V0)^Nqt))
 end
 
 export ExponentialRec
