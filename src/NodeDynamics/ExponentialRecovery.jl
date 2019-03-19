@@ -3,7 +3,7 @@
 
 @doc doc"""
 ```Julia
-ExponentialRec(P0, Q0, Nps, Npt, Nqs, Nqt, Tp, Tq, V0)
+ExponentialRecoveryLoad(P0, Q0, Nps, Npt, Nqs, Nqt, Tp, Tq, V0)
 ```
 A node type that represents the exponential recovery load model. The exponential recovery load model aims to
 capture the load restoration characteristics with an exponential recovery process expressed as an
@@ -32,7 +32,7 @@ IEEE TRANSACTIONS ON POWER SYSTEMS, VOL. 21, NO. 3, AUGUST 2006
 Measurement-Based Dynamic Load Models: Derivation, Comparison, and Validation
 Byoung-Kon Choi, Member, IEEE, Hsiao-Dong Chiang, Fellow, IEEE, Yinhong Li, Hua Li, Member, IEEE, Yung-Tien Chen, Der-Hua Huang, and Mark G. Lauby
 """
-@DynamicNode ExponentialRec(P0, Q0, Nps, Npt, Nqs, Nqt, Tp, Tq, V0) <: OrdinaryNodeDynamicsWithMass(m_u=false, m_int= [true, true])  begin
+@DynamicNode ExponentialRecoveryLoad(P0, Q0, Nps, Npt, Nqs, Nqt, Tp, Tq, V0) <: OrdinaryNodeDynamicsWithMass(m_u=false, m_int= [true, true])  begin
     @assert V0 > 0 "Nominal Voltage should be >0"
     @assert Tp > 0 "Load recovery constant should be >0"
     @assert Tq > 0 "Load recovery constant should be >0"
@@ -51,4 +51,4 @@ end [[x_p, dx_p],[x_q, dx_q]] begin
     du = -Pd + x_p + P0*((abs(u)/V0)^Npt) + im*(-Qd + x_q + Q0*((abs(u)/V0)^Nqt))
 end
 
-export ExponentialRec
+export ExponentialRecoveryLoad
