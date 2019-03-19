@@ -32,7 +32,6 @@ IEEE TRANSACTIONS ON POWER SYSTEMS, VOL. 21, NO. 3, AUGUST 2006
 Measurement-Based Dynamic Load Models: Derivation, Comparison, and Validation
 Byoung-Kon Choi, Member, IEEE, Hsiao-Dong Chiang, Fellow, IEEE, Yinhong Li, Hua Li, Member, IEEE, Yung-Tien Chen, Der-Hua Huang, and Mark G. Lauby
 """
-
 @DynamicNode ExponentialRec(P0, Q0, Nps, Npt, Nqs, Nqt, Tp, Tq, V0) <: OrdinaryNodeDynamicsWithMass(m_u=false, m_int= [true, true])  begin
     @assert V0 > 0 "Nominal Voltage should be >0"
     @assert Tp > 0 "Load recovery constant should be >0"
