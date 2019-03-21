@@ -22,7 +22,7 @@ Using `CSIMinimal` for node ``a`` gives:
 ```
 
 """
-@DynamicNode CSIMinimal(I_r) <: OrdinaryNodeDynamicsWithMass(m_u=false, m_int=no_internal_masses) begin
+@DynamicNode CSIMinimal(I_r) <: OrdinaryNodeDynamicsWithMass(m_u=false, m_int=no_internal_masses)  begin
 end [] begin
     du = i - I_r
 end
