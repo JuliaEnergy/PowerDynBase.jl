@@ -144,7 +144,7 @@ end
 @syms I_r real=true
 CSIMindyn = construct_node_dynamics(CSIMinimal(I_r=I_r))
 dint = []; int = [];
-CSIMindyn.rhs(dint, u, i, int, t) == I_r - abs(i)
+CSIMindyn.ode_dynamics.rhs(dint, u, i, int, t) == I_r - abs(i)
 @test internalsymbolsof(CSIMindyn) == []
 @test internaldsymbolsof(CSIMindyn) == []
 end
