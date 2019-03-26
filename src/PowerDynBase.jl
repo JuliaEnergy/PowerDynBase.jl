@@ -65,6 +65,8 @@ include("NodeDynamics/VoltageSourceInverterMinimal.jl")
 include("NodeDynamics/VoltageSourceInverterVoltagePT1.jl")
 include("NodeDynamics/CurrentSourceInverterMinimal.jl")
 include("NodeDynamics/ExponentialRecovery.jl")
+include("NodeDynamics/RLC-Load.jl")
+
 
 
 # the structures building the grid dynamics from the node dynamics
