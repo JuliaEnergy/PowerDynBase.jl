@@ -3,14 +3,16 @@
 
 @doc doc"""
 ```Julia
-RLCLoad()
+RLCLoad(R,L,C)
 ```
-A node type that represents the RLC load model.
+A node type that represents the RLC load model according to
+"Power Systems Electromagnetic Transients Simulation",
+Neville Watson and Jos Arrillaga, IET 2007, p.59, eq. (3.47)
 
 # Keyword Arguments
-- `R`:
-- `L`:
-- `C`:
+- `R`: resistance in [?]
+- `L`: inductance in [?]
+- `C`: capacitance in [?]
 
 
 # Mathematical Representation
