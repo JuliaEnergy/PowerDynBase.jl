@@ -190,3 +190,15 @@ de_c = de_d + 1im*de_q
 @test expand(dint[6]) == expand((1 / T_sv) * (-P_sv + P - (1/R_d)*(((omega+(Ω*2PI))/(Ω*2PI))-1)))
 @test expand(dint[7]) == expand((1 / T_ch) * (-P_m  + P_sv))
 end
+
+@testset "RLC-Load" begin
+@syms R L C positive=true
+@syms du_C u_C di_L i_L real= true
+RLCdyn = construct_node_dynamics(RLCLoad(R=R,L=L,C=C))
+dint = [du_C,di_L]; int = [u_C,i_L];
+du = RLCdyn.rhs(dint, u, i, int, t)
+i_L=i
+@test expand(dint[1])==expand(1/C *i_L)
+@test expand(dint[1])==expand(du)
+@test expand(dint[2])==expand(R/L*i_L+1/L*u)
+end
